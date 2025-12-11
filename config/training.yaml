@@ -1,0 +1,75 @@
+defaults:
+  - _self_  # load only this config file
+
+hydra:
+  run:
+    dir: .  # keep Hydra outputs in project root
+  job:
+    chdir: False  # do not change working dir when running with Hydra
+
+adjoint: false  # use standard ODE solver (not adjoint)
+visualize: false  # toggle extra visualization hooks (unused)
+niters: 4000  # total training epochs/iterations
+lr: 0.001  # optimizer learning rate (increased for faster convergence)
+gpu: 0  # CUDA device id (set -1 for CPU)
+train_dir: ./train_dir  # checkpoint and log output directory
+val_dir_pictures: ./val_pictures  # directory for validation plots
+val_dir_data: ./val_data  # directory for validation tensors/data dumps
+model_name: Contiformer  # model identifier used in checkpoint filenames
+log_step: 50  # log training loss every N batches
+seed: 42  # random seed for reproducibility
+val_plot_freq: 10  # run validation/plotting every N epochs
+disable_tqdm: false  # hide tqdm progress bars when true
+
+# ==================== Model Architecture ====================
+d_model: 64  # hidden dimension of the transformer
+d_inner: 256  # feed-forward inner dimension (typically 4x d_model)
+n_layers: 3  # number of encoder layers (was hardcoded to 1)
+n_head: 4  # number of attention heads
+actfn: softplus  # activation function for ODE: softplus, tanh, relu
+
+# ==================== ODE Solver Settings ====================
+atol: 0.01  # absolute tolerance for ODE solver
+rtol: 0.01  # relative tolerance for ODE solver
+method: rk4  # ODE solver integration method: euler, rk4, dopri5
+dropout: 0.1  # dropout probability in encoder
+grad_clip: 1.0  # max gradient norm for clipping (0 disables)
+
+# ==================== Learning Rate Scheduler ====================
+use_scheduler: true  # enable learning rate scheduling
+scheduler_type: cosine  # cosine, step, plateau
+warmup_epochs: 100  # warmup period for learning rate
+min_lr: 0.00001  # minimum learning rate
+
+# ==================== Loss Function Weights ====================
+weight_l1: 1.0  # weight for L1/smooth L1 loss
+weight_grad: 0.5  # weight for gradient matching loss
+weight_smooth: 0.1  # weight for smoothness regularization
+use_frequency_loss: false  # add frequency domain loss for denoising
+
+# ==================== Early Stopping ====================
+early_stopping: true  # enable early stopping
+patience: 200  # epochs to wait before stopping
+min_delta: 0.0001  # minimum improvement to reset patience
+
+y_lim_low: 10  # minimum starting value for generated series
+y_lim_high: 10000  # maximum starting value for generated series
+train_count: 100  # number of synthetic training series
+val_count: 1  # number of synthetic validation series
+number_x_values: 100  # length (timesteps) of each series
+batch_size: 10  # training batch size
+random_number_range_distribution: norm  # distribution for random coefficients
+random_number_range_mean: 0  # mean for random coefficient sampling
+random_number_range_std: 5  # std dev for random coefficient sampling
+spline_value_low: 800000  # lower bound for spline amplitude sampling
+spline_value_high: 1100000  # upper bound for spline amplitude sampling
+vocab_size: 100000  # range for token-like noise injection
+noise_std_distribution: norm  # distribution for observation noise
+noise_std_mean: 0  # mean of observation noise
+noise_std_std: 0.15  # std dev of observation noise
+interpolation_min_width: 10  # smallest gap length removed from series
+interpolation_max_width: 100  # largest gap length removed from series
+interpolation_max_count: 10  # maximum number of gaps removed
+offset: 10  # margin to avoid removing points near the start/end
+x_lim_low: 0  # lower x-bound for masking/removal
+x_lim_high: 1000  # upper x-bound for masking/removal

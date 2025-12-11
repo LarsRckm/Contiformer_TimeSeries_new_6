@@ -1,0 +1,20 @@
+[2025-12-11 16:39:31,057][./train_dir/log][INFO] - Using cosine learning rate scheduler
+[2025-12-11 16:39:31,059][./train_dir/log][INFO] - Model: Contiformer | Total params: 175,617 | Trainable: 175,617
+[2025-12-11 16:39:31,059][./train_dir/log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-11 16:39:31,059][./train_dir/log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-11 16:40:11,551][./train_dir/log][INFO] - Using cosine learning rate scheduler
+[2025-12-11 16:40:11,553][./train_dir/log][INFO] - Model: Contiformer | Total params: 175,617 | Trainable: 175,617
+[2025-12-11 16:40:11,553][./train_dir/log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-11 16:40:11,553][./train_dir/log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-11 16:44:28,694][./train_dir/log][INFO] - Using cosine learning rate scheduler
+[2025-12-11 16:44:28,702][./train_dir/log][INFO] - Model: Contiformer | Total params: 175,617 | Trainable: 175,617
+[2025-12-11 16:44:28,703][./train_dir/log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-11 16:44:28,703][./train_dir/log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-11 16:45:18,711][./train_dir/log][INFO] - Using cosine learning rate scheduler
+[2025-12-11 16:45:18,712][./train_dir/log][INFO] - Model: Contiformer | Total params: 175,617 | Trainable: 175,617
+[2025-12-11 16:45:18,713][./train_dir/log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-11 16:45:18,713][./train_dir/log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
+[2025-12-11 16:48:23,400][./train_dir/log][INFO] - Using cosine learning rate scheduler
+[2025-12-11 16:48:23,401][./train_dir/log][INFO] - Model: Contiformer | Total params: 175,617 | Trainable: 175,617
+[2025-12-11 16:48:23,402][./train_dir/log][INFO] - Architecture: d_model=64, n_layers=3, n_head=4
+[2025-12-11 16:48:23,402][./train_dir/log][INFO] - Early stopping enabled with patience=200, min_delta=0.0001
