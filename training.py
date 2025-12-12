@@ -337,8 +337,7 @@ def build_model_and_optimizer(cfg, device, log):
                         add_pe=getattr(cfg, 'add_pe', False),
                         normalize_before=getattr(cfg, 'normalize_before', False),
                         # max_length=getattr(cfg, 'max_length', 100),
-                        )
-    model.to(device)
+                        ).to(device)
     optimizer = optim.AdamW(model.parameters(), lr=cfg.lr, weight_decay=1e-5)
     scheduler = None
     start_itr = 0
@@ -416,7 +415,7 @@ def train_one_epoch(model, optimizer, train_loader, device, epoch, loss_meter, c
         groundTruth = batch["groundTruth"].unsqueeze(-1).to(device)
         timeSeries_noisy_original = batch["noisy_TimeSeries"].to(device)
         mask = batch["mask"].to(device)
-        # time_stamps_original = batch["time_stamps"].to(device)
+        time_stamps_original = batch["time_stamps"].to(device)
 
         # mask_indices = torch.where(mask[0] == True)[0]
         # timeSeries_noisy = timeSeries_noisy_original[:, mask_indices].unsqueeze(-1)
@@ -432,7 +431,7 @@ def train_one_epoch(model, optimizer, train_loader, device, epoch, loss_meter, c
         loss, l1_loss, gradient_loss = model.calculate_loss(
             out,
             groundTruth,
-            time_interval=torch.linspace(0, 1, steps=cfg.number_x_values),
+            time_interval=time_stamps_original[0],
             weight_l1=getattr(cfg, 'weight_l1', 1.0),
             weight_grad=getattr(cfg, 'weight_grad', 0.5),
             weight_smooth=getattr(cfg, 'weight_smooth', 0.1),
