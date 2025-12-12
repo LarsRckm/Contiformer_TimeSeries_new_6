@@ -505,11 +505,11 @@ def run_validation(model, val_loader, device, epoch, cfg, log, save_visuals=True
             if save_visuals:
                 # Denormalize time for visualization and exports (model still uses [0, 1])
                 time_scale = float(cfg.number_x_values) if cfg.number_x_values > 1 else 1.0
-                time_stamps_plot = time_stamps_original[0] * time_scale
+                time_stamps_plot = time_stamps_original[0].cpu() * time_scale
 
                 fig, ax = plt.subplots(1, 1, figsize=(12, 6))
                 ax.plot(time_stamps_plot,
-                        ((timeSeries_noisy_original[0] * 0.5 + 0.5) * div_term_cpu[0]) + min_value_cpu[0],
+                        (timeSeries_noisy_original[0].detach().cpu() * div_term_cpu[0].detach().cpu()) + min_value_cpu[0].detach().cpu(),
                         'o', markersize=2, alpha=0.5, label="Noisy Input")
                 ax.plot(time_stamps_plot,
                         groundTruth[0].detach().cpu().squeeze(-1),
