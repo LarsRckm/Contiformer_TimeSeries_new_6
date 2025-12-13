@@ -321,7 +321,7 @@ class ContiFormer(nn.Module):
             t = t.unsqueeze(0).repeat(x.shape[0], 1)
 
         #interpolationslücken zu 0 setzen
-        x[is_observed == 0] = 0
+        x[is_observed == 1] = 0
 
         #value embedding
         value_emb = self.linIn(x)
