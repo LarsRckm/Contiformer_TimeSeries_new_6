@@ -307,8 +307,8 @@ class ContiFormer(nn.Module):
         self.smooth_loss = []
         self.total_loss = []
 
-        # self.linIn = nn.Sequential(nn.Linear(input_size, d_model), nn.GELU(), nn.Linear(d_model, d_model))
-        self.linIn = nn.Linear(input_size, d_model)
+        self.linIn = nn.Sequential(nn.Linear(input_size, d_model), nn.GELU(), nn.Linear(d_model, d_model))
+        # self.linIn = nn.Linear(input_size, d_model)
         self.typeEmbedding = nn.Embedding(2,d_model)
         self.linOut = nn.Linear(d_model, input_size)
 
